@@ -10,3 +10,6 @@ db.places.insertOne({name: "Pantheon", location: {type : "point3"}, coordinates:
  
 db.places.update({name: "Pantheon"}, {$addToSet: { coordinates: "48.8462218" }}) #on met à jour les coordoonées
 db.places.update({name: "Pantheon"}, {$addToSet: { coordinates: "2.3442251" }}) #on n'oublie pas d'inverser
+
+db.places.createIndex({ location: "2dsphere" })
+db.places.find({location: {$near: {$geometry: {type: "point",coordinates: [2.2885984, 48.8545085]},}}})
